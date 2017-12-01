@@ -28,9 +28,9 @@ public class Cesar extends AEncryption {
 
     @Override
     public String decrypt() {
-        algo.decrypt();
+        String result = algo.decrypt();
         System.out.println("Cesar Decrypt");
-        return "Cesar Decrypt";
+        return result + " Cesar Decrypt";
     }
 
 }

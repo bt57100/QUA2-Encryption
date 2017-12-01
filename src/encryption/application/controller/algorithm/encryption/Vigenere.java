@@ -28,9 +28,9 @@ public class Vigenere extends AEncryption {
 
     @Override
     public String decrypt() {
-        algo.decrypt();
+        String result = algo.decrypt();
         System.out.println("Vigenere Decrypt");
-        return "Vigenere Decrypt";
+        return result + " Vigenere Decrypt";
     }
     
     

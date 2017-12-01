@@ -59,7 +59,7 @@ public class EncryptionController implements Initializable {
             }
         }
         
-        ed.encrypt();
+        resultatInput.setText(ed.encrypt());
      
     }
 
