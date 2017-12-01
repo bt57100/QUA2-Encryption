@@ -1,4 +1,4 @@
-# AST 2017
+# QUA2 Encryption
 
 ![Build](https://travis-ci.org/bt57100/QUA2-Encryption.svg?branch=master)
 
