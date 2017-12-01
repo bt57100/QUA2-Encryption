@@ -10,9 +10,6 @@ package encryption.application.controller.algorithm;
  * @author bt57100
  */
 public class EncryptionDecorator {
-
-    private String value;
-    private String key;
     
     public String encrypt() {
         System.out.println("EncryptionDecorator Encrypt");
@@ -22,22 +19,6 @@ public class EncryptionDecorator {
     public String decrypt() {
         System.out.println("EncryptionDecorator Decrypt");
         return "EncryptionDecorator decrypt";
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
     }
     
 }
