@@ -12,6 +12,9 @@ package encryption.application.controller.algorithm;
 public class EncryptionDecorator {
     private AEncryption encryption;
 
+    public EncryptionDecorator() {
+    }
+
     public EncryptionDecorator(AEncryption encryption) {
         this.encryption = encryption;
     }

@@ -14,6 +14,9 @@ public abstract class AEncryption extends EncryptionDecorator {
     String value ="";
     String key="";
 
+    public AEncryption() {
+    }
+
     public AEncryption(AEncryption encryption) {
         super(encryption);
     }
