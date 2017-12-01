@@ -9,11 +9,21 @@ package encryption.application.controller.algorithm;
  *
  * @author bt57100
  */
-public abstract class EncryptionDecorator {
-    private IEncryption encryption;
+public class EncryptionDecorator {
+    private AEncryption encryption;
 
-    public EncryptionDecorator(IEncryption encryption) {
+    public EncryptionDecorator(AEncryption encryption) {
         this.encryption = encryption;
+    }
+ 
+   
+    public String encrypt() {
+        return encryption.encrypt();
+    }
+
+  
+    public String decrypt() {
+        return encryption.decrypt();
     }
     
 }

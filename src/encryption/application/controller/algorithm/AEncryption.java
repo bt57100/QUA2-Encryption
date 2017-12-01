@@ -9,9 +9,16 @@ package encryption.application.controller.algorithm;
  *
  * @author bt57100
  */
-public interface IEncryption {
+public abstract class AEncryption extends EncryptionDecorator {
     
-    public String encrypt();
+    String value ="";
+    String key="";
+
+    public AEncryption(AEncryption encryption) {
+        super(encryption);
+    }
     
-    public String decrypt();
+   abstract public  String  encrypt();
+            
+   abstract public String decrypt();
 }

@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="encryption.application.controller.EncryptionController">
+<AnchorPane id="AnchorPane" prefHeight="266.0" prefWidth="451.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="encryption.application.controller.EncryptionController">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+        <Button layoutX="124.0" layoutY="108.0" onAction="#chiffrer" prefHeight="25.0" prefWidth="93.0" text="Chiffrer !" />
+        <Label fx:id="label" layoutX="129.0" layoutY="125.0" minHeight="16" minWidth="69" prefHeight="25.0" prefWidth="69.0" />
+      <TextField fx:id="chaineInput" layoutX="26.0" layoutY="25.0" prefHeight="25.0" prefWidth="274.0" text="Chaine à chiffrer / déchiffrer" />
+      <TextArea fx:id="resultatInput" layoutX="19.0" layoutY="155.0" prefHeight="97.0" prefWidth="414.0" text="Resultat " />
+      <TextField fx:id="cleInput" layoutX="26.0" layoutY="67.0" prefHeight="25.0" prefWidth="274.0" text="Clé" />
+      <Button layoutX="254.0" layoutY="108.0" onAction="#dechiffrer" prefHeight="25.0" prefWidth="93.0" text="Déchiffrer !" />
+      <Label layoutX="396.0" layoutY="29.0" text="Cesar" />
+      <Label layoutX="387.0" layoutY="59.0" text="Vigenere" />
+      <TextField fx:id="nbCesar" layoutX="344.0" layoutY="25.0" prefHeight="25.0" prefWidth="36.0" text="0" />
+      <TextField fx:id="nbVigenere" layoutX="344.0" layoutY="55.0" prefHeight="25.0" prefWidth="36.0" text="0" />
     </children>
 </AnchorPane>

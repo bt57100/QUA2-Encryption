@@ -5,22 +5,33 @@
  */
 package encryption.application.controller.algorithm.encryption;
 
-import encryption.application.controller.algorithm.IEncryption;
+import encryption.application.controller.algorithm.AEncryption;
 
 /**
  *
  * @author bt57100
  */
-public class Cesar implements IEncryption {
+public class Cesar extends AEncryption {
+
+    public Cesar(AEncryption encryption) {
+        super(encryption);
+    }
+
+    public Cesar() {
+        
+    }
 
     @Override
     public String encrypt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Encrypt \n");
+        return null;
+   
     }
 
     @Override
     public String decrypt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Decrypt \n");
+        return null;
     }
     
 }
