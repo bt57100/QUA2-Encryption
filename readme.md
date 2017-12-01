@@ -2,7 +2,7 @@
 
 ![Build](https://travis-ci.org/bt57100/QUA2-Encryption.svg?branch=master)
 
-Simple project for ECE QUA2 class
+Simple project for ECE QUA2 class:  
 This application is used to encrypt and decrypt data
 
 ## Installation instruction
