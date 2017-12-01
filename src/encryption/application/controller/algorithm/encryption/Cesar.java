@@ -6,6 +6,7 @@
 package encryption.application.controller.algorithm.encryption;
 
 import encryption.application.controller.algorithm.AEncryption;
+import encryption.application.controller.algorithm.EncryptionDecorator;
 
 /**
  *
@@ -13,25 +14,23 @@ import encryption.application.controller.algorithm.AEncryption;
  */
 public class Cesar extends AEncryption {
 
-    public Cesar(AEncryption encryption) {
-        super(encryption);
-    }
-
-    public Cesar() {
-        
+    public Cesar(EncryptionDecorator encrypt) {
+        algo = encrypt;
     }
 
     @Override
     public String encrypt() {
-        System.out.println("Encrypt \n");
-        return null;
-   
+        algo.encrypt();
+        System.out.println("Cesar Encrypt");
+        return "Cesar Encrypt";
+
     }
 
     @Override
     public String decrypt() {
-        System.out.println("Decrypt \n");
-        return null;
+        algo.decrypt();
+        System.out.println("Cesar Decrypt");
+        return "Cesar Decrypt";
     }
-    
+
 }

@@ -6,6 +6,7 @@
 package encryption.application.controller.algorithm.encryption;
 
 import encryption.application.controller.algorithm.AEncryption;
+import encryption.application.controller.algorithm.EncryptionDecorator;
 
 /**
  *
@@ -13,24 +14,23 @@ import encryption.application.controller.algorithm.AEncryption;
  */
 public class Vigenere extends AEncryption {
 
-    public Vigenere() {
-    }
-
-    public Vigenere(AEncryption encryption) {
-        super(encryption);
+    public Vigenere(EncryptionDecorator encrypt) {
+        algo = encrypt;
     }
 
     @Override
     public String encrypt() {
-        System.out.println("Encrypt \n");
-        return null;
+        algo.encrypt();
+        System.out.println("Vigenere Encrypt");
+        return "Vigenere Encrypt";
       
     }
 
     @Override
     public String decrypt() {
-        System.out.println("Decrypt \n");
-        return null;
+        algo.decrypt();
+        System.out.println("Vigenere Decrypt");
+        return "Vigenere Decrypt";
     }
     
     

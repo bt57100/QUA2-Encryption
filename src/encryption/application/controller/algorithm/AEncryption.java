@@ -10,18 +10,13 @@ package encryption.application.controller.algorithm;
  * @author bt57100
  */
 public abstract class AEncryption extends EncryptionDecorator {
-    
-    String value ="";
-    String key="";
 
-    public AEncryption() {
-    }
+    protected EncryptionDecorator algo;
 
-    public AEncryption(AEncryption encryption) {
-        super(encryption);
-    }
-    
-   abstract public  String  encrypt();
-            
-   abstract public String decrypt();
+    @Override
+    public abstract String encrypt();
+
+    @Override
+    public abstract String decrypt();
+
 }

@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -40,14 +39,25 @@ public class EncryptionController implements Initializable {
     @FXML
     private void chiffrer(ActionEvent event) {
         System.out.println("Chiffrer");
+        
+        EncryptionDecorator ed = new EncryptionDecorator();
         String chaine = chaineInput.getText();
         String cle = cleInput.getText();
         
         int nbCesar =  Integer.parseInt(this.nbCesar.getText());
         int nbVigenere =  Integer.parseInt(this.nbVigenere.getText());
         
-        Cesar ed = new Cesar();
-        Vigenere ed2 = new Vigenere(ed);
+        if(nbCesar > 0) {
+            for(int i=0; i < nbCesar; i++) {
+                ed = new Cesar(ed);
+            }
+        }
+        
+        if(nbVigenere > 0) {
+            for(int i=0; i < nbVigenere; i++) {
+                ed = new Vigenere(ed);
+            }
+        }
         
         ed.encrypt();
      

@@ -22,7 +22,7 @@ public class EncryptionApplication extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("view/EncryptionView.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.setTitle("QUA2 - Encryption");
         stage.setScene(scene);
         stage.show();
     }
