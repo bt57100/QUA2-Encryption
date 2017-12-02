@@ -20,9 +20,10 @@ public class Cesar extends AEncryption {
 
     @Override
     public void encrypt() {
+        algo.encrypt();
+        
         int key = Integer.parseInt(this.algo.getKey());
         String cypher = "";
-        algo.encrypt();
         for(char c : this.algo.getValue().toCharArray()) {
             cypher += (char) ((c + key) % 255);
         }
@@ -35,7 +36,16 @@ public class Cesar extends AEncryption {
     @Override
     public void decrypt() {
         algo.decrypt();
-        System.out.println("yet to impl");
+        
+        int key = Integer.parseInt(this.algo.getKey());
+        String result = "";
+        for(char c : this.algo.getValue().toCharArray()) {
+            result += (char) ((c - key) % 255);
+        }
+        
+        this.setValue(result);
+        
+        System.out.println(result);
     }
 
 }

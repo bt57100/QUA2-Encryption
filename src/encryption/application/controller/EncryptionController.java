@@ -44,20 +44,19 @@ public class EncryptionController implements Initializable {
         ed.setValue(this.chaineInput.getText());
         ed.setKey(this.cleInput.getText());
         
-        int nbCesar =  Integer.parseInt(this.nbCesar.getText());
-        int nbVigenere =  Integer.parseInt(this.nbVigenere.getText());
-        
-        if(nbCesar > 0) {
-            for(int i=0; i < nbCesar; i++) {
+        if(Integer.parseInt(this.nbCesar.getText()) > 0) {
+            for(int i=0; i < Integer.parseInt(this.nbCesar.getText()); i++) {
                 ed = new Cesar(ed);
                 ed.setValue(this.chaineInput.getText());
                 ed.setKey(this.cleInput.getText());
             }
         }
         
-        if(nbVigenere > 0) {
-            for(int i=0; i < nbVigenere; i++) {
+        if(Integer.parseInt(this.nbVigenere.getText()) > 0) {
+            for(int i=0; i < Integer.parseInt(this.nbVigenere.getText()); i++) {
                 ed = new Vigenere(ed);
+                ed.setValue(this.chaineInput.getText());
+                ed.setKey(this.cleInput.getText());
             }
         }
         ed.encrypt();
@@ -68,11 +67,28 @@ public class EncryptionController implements Initializable {
     @FXML
     private void dechiffrer(ActionEvent event) {
         System.out.println("Dechiffrer");
-        String chaine = chaineInput.getText();
-        String cle = cleInput.getText();
         
-        int nbCesar =  Integer.parseInt(this.nbCesar.getText());
-        int nbVigenere =  Integer.parseInt(this.nbVigenere.getText());
+        EncryptionDecorator ed = new EncryptionDecorator();
+        ed.setValue(this.chaineInput.getText());
+        ed.setKey(this.cleInput.getText());
+                
+        if(Integer.parseInt(this.nbCesar.getText()) > 0) {
+            for(int i=0; i < Integer.parseInt(this.nbCesar.getText()); i++) {
+                ed = new Cesar(ed);
+                ed.setValue(this.chaineInput.getText());
+                ed.setKey(this.cleInput.getText());
+            }
+        }
+        
+        if(Integer.parseInt(this.nbVigenere.getText()) > 0) {
+            for(int i=0; i < Integer.parseInt(this.nbVigenere.getText()); i++) {
+                ed = new Vigenere(ed);
+                ed.setValue(this.chaineInput.getText());
+                ed.setKey(this.cleInput.getText());
+            }
+        }
+        ed.decrypt();
+        resultatInput.setText(ed.getValue());
     }
 
     @Override
