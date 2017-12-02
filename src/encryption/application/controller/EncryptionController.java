@@ -41,8 +41,8 @@ public class EncryptionController implements Initializable {
         System.out.println("Chiffrer");
         
         EncryptionDecorator ed = new EncryptionDecorator();
-        String chaine = chaineInput.getText();
-        String cle = cleInput.getText();
+        ed.setValue(this.chaineInput.getText());
+        ed.setKey(this.cleInput.getText());
         
         int nbCesar =  Integer.parseInt(this.nbCesar.getText());
         int nbVigenere =  Integer.parseInt(this.nbVigenere.getText());
@@ -50,6 +50,8 @@ public class EncryptionController implements Initializable {
         if(nbCesar > 0) {
             for(int i=0; i < nbCesar; i++) {
                 ed = new Cesar(ed);
+                ed.setValue(this.chaineInput.getText());
+                ed.setKey(this.cleInput.getText());
             }
         }
         
@@ -58,8 +60,8 @@ public class EncryptionController implements Initializable {
                 ed = new Vigenere(ed);
             }
         }
-        
-        resultatInput.setText(ed.encrypt());
+        ed.encrypt();
+        resultatInput.setText(ed.getValue());
      
     }
 

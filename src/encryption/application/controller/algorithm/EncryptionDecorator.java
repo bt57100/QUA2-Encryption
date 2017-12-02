@@ -11,14 +11,31 @@ package encryption.application.controller.algorithm;
  */
 public class EncryptionDecorator {
     
-    public String encrypt() {
+    private String value;
+    private String key;
+    
+    public void encrypt() {
         System.out.println("EncryptionDecorator Encrypt");
-        return "EncryptionDecorator encrypt";
     }
 
-    public String decrypt() {
+    public void decrypt() {
         System.out.println("EncryptionDecorator Decrypt");
-        return "EncryptionDecorator decrypt";
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
     
 }

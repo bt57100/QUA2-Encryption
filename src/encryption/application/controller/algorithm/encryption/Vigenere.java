@@ -19,18 +19,16 @@ public class Vigenere extends AEncryption {
     }
 
     @Override
-    public String encrypt() {
+    public void encrypt() {
         algo.encrypt();
         System.out.println("Vigenere Encrypt");
-        return "Vigenere Encrypt";
       
     }
 
     @Override
-    public String decrypt() {
-        String result = algo.decrypt();
+    public void decrypt() {
+        algo.decrypt();
         System.out.println("Vigenere Decrypt");
-        return result + " Vigenere Decrypt";
     }
     
     
