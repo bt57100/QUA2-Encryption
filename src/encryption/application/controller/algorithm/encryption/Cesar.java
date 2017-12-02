@@ -24,15 +24,7 @@ public class Cesar extends AEncryption {
         String cypher = "";
         algo.encrypt();
         for(char c : this.algo.getValue().toCharArray()) {
-            int newChar = c + key;
-            
-            if(newChar > 255) {
-                newChar -= 255;
-            } else if (newChar < 0) {
-                newChar += 255;
-            }
-            
-            cypher += (char) newChar;
+            cypher += (char) ((c + key) % 255);
         }
         
         this.setValue(cypher);
