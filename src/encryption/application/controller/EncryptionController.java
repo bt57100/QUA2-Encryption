@@ -39,35 +39,27 @@ public class EncryptionController implements Initializable {
     @FXML
     private void chiffrer(ActionEvent event) {
         System.out.println("Chiffrer");
-        
-        EncryptionDecorator ed = new EncryptionDecorator();
-        ed.setValue(this.chaineInput.getText());
-        ed.setKey(this.cleInput.getText());
-        
-        if(Integer.parseInt(this.nbCesar.getText()) > 0) {
-            for(int i=0; i < Integer.parseInt(this.nbCesar.getText()); i++) {
-                ed = new Cesar(ed);
-                ed.setValue(this.chaineInput.getText());
-                ed.setKey(this.cleInput.getText());
-            }
-        }
-        
-        if(Integer.parseInt(this.nbVigenere.getText()) > 0) {
-            for(int i=0; i < Integer.parseInt(this.nbVigenere.getText()); i++) {
-                ed = new Vigenere(ed);
-                ed.setValue(this.chaineInput.getText());
-                ed.setKey(this.cleInput.getText());
-            }
-        }
+        EncryptionDecorator ed = prepareAlgorithm();
         ed.encrypt();
         resultatInput.setText(ed.getValue());
-     
+        System.out.println();
     }
 
     @FXML
     private void dechiffrer(ActionEvent event) {
         System.out.println("Dechiffrer");
-        
+        EncryptionDecorator ed = prepareAlgorithm();
+        ed.decrypt();
+        resultatInput.setText(ed.getValue());
+        System.out.println();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
+    
+    private EncryptionDecorator prepareAlgorithm() {
         EncryptionDecorator ed = new EncryptionDecorator();
         ed.setValue(this.chaineInput.getText());
         ed.setKey(this.cleInput.getText());
@@ -87,13 +79,7 @@ public class EncryptionController implements Initializable {
                 ed.setKey(this.cleInput.getText());
             }
         }
-        ed.decrypt();
-        resultatInput.setText(ed.getValue());
+        
+        return ed;
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
-
 }
