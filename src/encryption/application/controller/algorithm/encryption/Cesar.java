@@ -17,19 +17,37 @@ public class Cesar extends AEncryption {
     public Cesar(EncryptionDecorator encrypt) {
         algo = encrypt;
     }
+    
+    
+    private int keyToInt(){
+        return Integer.parseInt(this.getKey());
+    }
+    
+    private String algoCesar(int key, String value){
+        String cypher = "";
+        int current;
+        int length = this.getValue().length();
+        for (int i = 0; i < length; i++){
+            current = Character.getNumericValue(this.getValue().charAt(i));
+            current += key;
+            cypher.concat(Character.toString((char) current));
+        }
+        System.out.print(cypher);
+        return cypher;
+    }
 
     @Override
     public String encrypt() {
         algo.encrypt();
-        System.out.println("Cesar Encrypt");
-        return "Cesar Encrypt";
+        System.out.println(algoCesar(keyToInt(), this.getValue()));
+        return algoCesar(keyToInt(), this.getValue());
 
     }
 
     @Override
     public String decrypt() {
         String result = algo.decrypt();
-        System.out.println("Cesar Decrypt");
+        System.out.println(algoCesar(-keyToInt(), this.getValue()));
         return result + " Cesar Decrypt";
     }
 
