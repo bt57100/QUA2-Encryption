@@ -13,11 +13,12 @@
         <Label fx:id="label" layoutX="129.0" layoutY="125.0" minHeight="16" minWidth="69" prefHeight="25.0" prefWidth="69.0" />
       <TextField fx:id="chaineInput" layoutX="26.0" layoutY="25.0" prefHeight="25.0" prefWidth="274.0" text="Chaine à chiffrer / déchiffrer" />
       <TextArea fx:id="resultatInput" layoutX="19.0" layoutY="155.0" prefHeight="97.0" prefWidth="414.0" text="Resultat " />
-      <TextField fx:id="cleInput" layoutX="26.0" layoutY="67.0" prefHeight="25.0" prefWidth="274.0" text="Clé" />
+      <TextField fx:id="clefCesar" layoutX="26.0" layoutY="68.0" onMouseClicked="#clearCesar" prefHeight="25.0" prefWidth="93.0" text="Clé César" />
       <Button layoutX="254.0" layoutY="108.0" onAction="#dechiffrer" prefHeight="25.0" prefWidth="93.0" text="Déchiffrer !" />
       <Label layoutX="396.0" layoutY="29.0" text="Cesar" />
       <Label layoutX="387.0" layoutY="59.0" text="Vigenere" />
       <TextField fx:id="nbCesar" layoutX="344.0" layoutY="25.0" prefHeight="25.0" prefWidth="36.0" text="0" />
       <TextField fx:id="nbVigenere" layoutX="344.0" layoutY="55.0" prefHeight="25.0" prefWidth="36.0" text="0" />
+      <TextField fx:id="clefVigenere" layoutX="138.0" layoutY="68.0" onMouseClicked="#clearVigenere" prefHeight="25.0" prefWidth="162.0" text="Clé Vigenere" />
     </children>
 </AnchorPane>

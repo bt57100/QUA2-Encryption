@@ -11,11 +11,14 @@ import encryption.application.controller.algorithm.encryption.Vigenere;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
@@ -28,7 +31,9 @@ public class EncryptionController implements Initializable {
     @FXML
     private TextField chaineInput;
     @FXML
-    private TextField cleInput;
+    private TextField clefCesar;
+    @FXML
+    private TextField clefVigenere;
     @FXML
     private TextArea resultatInput;
     @FXML
@@ -53,30 +58,52 @@ public class EncryptionController implements Initializable {
         resultatInput.setText(ed.getValue());
         System.out.println();
     }
+    
+    @FXML
+    public void clearCesar(MouseEvent event) {
+    	clefCesar.setText("");
+    }
+    
+    @FXML
+    public void clearVigenere(MouseEvent event) {
+    	clefVigenere.setText("");
+    }
+    
+    public EventHandler<KeyEvent> validateNumeric() {
+    	return new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				if(!event.getCharacter().matches("[0-9]")) {
+					event.consume();
+				}
+			}
+    	};
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    	clefCesar.addEventFilter(KeyEvent.KEY_TYPED, validateNumeric());
     }
     
     private EncryptionDecorator prepareAlgorithm() {
         EncryptionDecorator ed = new EncryptionDecorator();
         ed.setValue(this.chaineInput.getText());
-        ed.setKey(this.cleInput.getText());
                 
         if(Integer.parseInt(this.nbCesar.getText()) > 0) {
+            ed.setKey(this.clefCesar.getText());
             for(int i=0; i < Integer.parseInt(this.nbCesar.getText()); i++) {
                 ed = new Cesar(ed);
                 ed.setValue(this.chaineInput.getText());
-                ed.setKey(this.cleInput.getText());
+                ed.setKey(this.clefCesar.getText());
             }
         }
         
         if(Integer.parseInt(this.nbVigenere.getText()) > 0) {
+            ed.setKey(this.clefVigenere.getText());
             for(int i=0; i < Integer.parseInt(this.nbVigenere.getText()); i++) {
                 ed = new Vigenere(ed);
                 ed.setValue(this.chaineInput.getText());
-                ed.setKey(this.cleInput.getText());
+                ed.setKey(this.clefVigenere.getText());
             }
         }
         
