@@ -16,9 +16,18 @@ import java.util.List;
  */
 public class Vigenere extends AEncryption {
 
+    private final int first;
+    private final int last;
+    private final int size;
+    
     public Vigenere(EncryptionDecorator encrypt) {
         algo = encrypt;
+        first = 32;
+        last = 126;
+        size = last - first;
     }
+    
+
     
     private List stringToIntList(String string){
         List<Integer> result = new ArrayList<>();
@@ -49,7 +58,7 @@ public class Vigenere extends AEncryption {
         List<Integer> crypt = new ArrayList<>();
         
         for (int i = 0; i < valueLength; i++){
-            int res = (value.get(i)+ key.get(i%keyLength)-64)%94 +32;
+            int res = (value.get(i)+ key.get(i%keyLength)-2*first)%size +first;
             crypt.add(res);
         }
         String cypher = intListToString(crypt);
@@ -60,6 +69,20 @@ public class Vigenere extends AEncryption {
     public void decrypt() {
         algo.decrypt();
         System.out.println("Vigenere Decrypt");
+        List<Integer> value = stringToIntList(algo.getValue());
+        int valueLength = value.size();
+        List<Integer> key = stringToIntList(algo.getKey());
+        int keyLength = key.size();
+        
+        List<Integer> crypt = new ArrayList<>();
+        
+        for (int i = 0; i < valueLength; i++){
+            int res = (value.get(i)- key.get(i%keyLength))%size +first;
+            crypt.add(res);
+        }
+        String cypher = intListToString(crypt);
+        System.out.println(cypher);
+        this.setValue(cypher);
     }
     
     
