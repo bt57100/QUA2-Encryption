@@ -5,6 +5,7 @@
  */
 package encryption.application.controller;
 
+import encryption.application.controller.algorithm.AEncryption;
 import encryption.application.controller.algorithm.EncryptionDecorator;
 import encryption.application.controller.algorithm.encryption.Cesar;
 import encryption.application.controller.algorithm.encryption.Vigenere;
@@ -69,27 +70,38 @@ public class EncryptionController implements Initializable {
     	clefVigenere.setText("");
     }
     
-    public EventHandler<KeyEvent> validateNumeric() {
-    	return new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent event) {
-				if(!event.getCharacter().matches("[0-9]")) {
-					event.consume();
-				}
-			}
-    	};
+    private EventHandler<KeyEvent> validateNumeric() {
+    	return (KeyEvent event) -> {
+            if(!event.getCharacter().matches("[0-9]")) {
+                event.consume();
+            }
+        };
+    }
+    
+    private EventHandler<KeyEvent> validateCustomAlphaNumeric() {
+        final String regExp = "["+Character.toString((char)AEncryption.FIRST)+
+                "-"+Character.toString((char)AEncryption.LAST)+"]";
+    	return (KeyEvent event) -> {
+            if(!event.getCharacter().matches(regExp)) {
+                event.consume();
+            }
+        };
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nbCesar.addEventFilter(KeyEvent.KEY_TYPED, validateNumeric());
+        nbVigenere.addEventFilter(KeyEvent.KEY_TYPED, validateNumeric());
     	clefCesar.addEventFilter(KeyEvent.KEY_TYPED, validateNumeric());
+        clefVigenere.addEventFilter(KeyEvent.KEY_TYPED, validateCustomAlphaNumeric());
+        chaineInput.addEventFilter(KeyEvent.KEY_TYPED, validateCustomAlphaNumeric());
     }
     
     private EncryptionDecorator prepareAlgorithm() {
         EncryptionDecorator ed = new EncryptionDecorator();
         ed.setValue(this.chaineInput.getText());
                 
-        if(Integer.parseInt(this.nbCesar.getText()) > 0) {
+        if(Integer.parseInt(this.nbCesar.getText()== null ? "0" :this.nbCesar.getText()) > 0) {
             ed.setKey(this.clefCesar.getText());
             for(int i=0; i < Integer.parseInt(this.nbCesar.getText()); i++) {
                 ed = new Cesar(ed);
@@ -98,7 +110,7 @@ public class EncryptionController implements Initializable {
             }
         }
         
-        if(Integer.parseInt(this.nbVigenere.getText()) > 0) {
+        if(Integer.parseInt(this.nbVigenere.getText() == null ? "0" :this.nbVigenere.getText()) > 0) {
             ed.setKey(this.clefVigenere.getText());
             for(int i=0; i < Integer.parseInt(this.nbVigenere.getText()); i++) {
                 ed = new Vigenere(ed);
