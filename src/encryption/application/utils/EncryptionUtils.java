@@ -14,8 +14,12 @@ public class EncryptionUtils {
     public static final int LAST = 126;
     public static final int SIZE = LAST - FIRST;
     
-    public static final String getRegExp(){
+    public static final String getRegExpCustomAlphaNum(){
         return "["+Character.toString((char)EncryptionUtils.FIRST)+
                 "-"+Character.toString((char)EncryptionUtils.LAST)+"]";
+    }
+    
+    public static final String getRegExpNum(){
+        return "[0-9]";
     }
 }

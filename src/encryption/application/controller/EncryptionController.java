@@ -67,6 +67,11 @@ public class EncryptionController implements Initializable {
     }
     
     @FXML
+    public void clearChaineInput(MouseEvent event) {
+    	chaineInput.setText("");
+    }
+    
+    @FXML
     public void clearVigenere(MouseEvent event) {
     	clefVigenere.setText("");
     }
@@ -81,7 +86,7 @@ public class EncryptionController implements Initializable {
     
     private EventHandler<KeyEvent> validateCustomAlphaNumeric() {
     	return (KeyEvent event) -> {
-            if(!event.getCharacter().matches(EncryptionUtils.getRegExp())) {
+            if(!event.getCharacter().matches(EncryptionUtils.getRegExpCustomAlphaNum())) {
                 event.consume();
             }
         };
@@ -96,11 +101,20 @@ public class EncryptionController implements Initializable {
         chaineInput.addEventFilter(KeyEvent.KEY_TYPED, validateCustomAlphaNumeric());
     }
     
+    private int convertCesarKey() {
+        int key = 0;        
+        if(this.nbCesar.getText() != null && 
+                this.clefCesar.getText().matches(EncryptionUtils.getRegExpNum())) {
+            key = Integer.parseInt(this.clefCesar.getText());
+        }
+        return key;
+    }
+    
     private EncryptionDecorator prepareAlgorithm() {
         EncryptionDecorator ed = new EncryptionDecorator();
         ed.setValue(this.chaineInput.getText());
                 
-        if(Integer.parseInt(this.nbCesar.getText()== null ? "0" :this.nbCesar.getText()) > 0) {
+        if(convertCesarKey() > 0) {
             ed.setKey(this.clefCesar.getText());
             for(int i=0; i < Integer.parseInt(this.nbCesar.getText()); i++) {
                 ed = new Cesar(ed);
