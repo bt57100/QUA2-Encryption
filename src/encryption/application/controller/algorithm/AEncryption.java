@@ -10,10 +10,7 @@ package encryption.application.controller.algorithm;
  * @author bt57100
  */
 public abstract class AEncryption extends EncryptionDecorator {
-    public static final int FIRST = 32;
-    public static final int LAST = 126;
-    public static final int SIZE = LAST - FIRST;
-
+    
     protected EncryptionDecorator algo;
 
     @Override

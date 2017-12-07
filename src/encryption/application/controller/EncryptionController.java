@@ -5,6 +5,7 @@
  */
 package encryption.application.controller;
 
+import encryption.application.utils.EncryptionUtils;
 import encryption.application.controller.algorithm.AEncryption;
 import encryption.application.controller.algorithm.EncryptionDecorator;
 import encryption.application.controller.algorithm.encryption.Cesar;
@@ -79,10 +80,8 @@ public class EncryptionController implements Initializable {
     }
     
     private EventHandler<KeyEvent> validateCustomAlphaNumeric() {
-        final String regExp = "["+Character.toString((char)AEncryption.FIRST)+
-                "-"+Character.toString((char)AEncryption.LAST)+"]";
     	return (KeyEvent event) -> {
-            if(!event.getCharacter().matches(regExp)) {
+            if(!event.getCharacter().matches(EncryptionUtils.getRegExp())) {
                 event.consume();
             }
         };

@@ -7,6 +7,7 @@ package encryption.application.controller.algorithm.encryption;
 
 import encryption.application.controller.algorithm.AEncryption;
 import encryption.application.controller.algorithm.EncryptionDecorator;
+import encryption.application.utils.EncryptionUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,9 +45,6 @@ public class Vigenere extends AEncryption {
     @Override
     public void encrypt() {
         algo.encrypt();
-        //System.out.println("Vigenere Encrypt");
-        
-        
         String cypher = vigenereAlgo(true);
         this.setValue(cypher);
     }
@@ -54,10 +52,7 @@ public class Vigenere extends AEncryption {
     @Override
     public void decrypt() {
         algo.decrypt();
-        //System.out.println("Vigenere Decrypt");
-        
         String cypher = vigenereAlgo(false);
-        System.out.println(cypher);
         this.setValue(cypher);
     }
     
@@ -70,8 +65,8 @@ public class Vigenere extends AEncryption {
         List<Integer> crypt = new ArrayList<>();
         
         for (int i = 0; i < valueLength; i++){
-            crypt.add(Math.floorMod(value.get(i)-FIRST+ mult(encrypt)*
-                    (key.get(i%keyLength)-FIRST),SIZE) +FIRST);
+            crypt.add(Math.floorMod(value.get(i)-EncryptionUtils.FIRST+ mult(encrypt)*
+                    (key.get(i%keyLength)-EncryptionUtils.FIRST),EncryptionUtils.SIZE) +EncryptionUtils.FIRST);
         }
         return intListToString(crypt);
     }
