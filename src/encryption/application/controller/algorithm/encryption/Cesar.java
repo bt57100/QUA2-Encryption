@@ -22,30 +22,29 @@ public class Cesar extends AEncryption {
     public void encrypt() {
         algo.encrypt();
         
-        int key = Integer.parseInt(this.algo.getKey());
-        String cypher = "";
-        for(char c : this.algo.getValue().toCharArray()) {
-            cypher += (char) ((c + key) % 255);
-        }
+        String result = cesarAlgo(true);
+        this.setValue(result);
         
-        this.setValue(cypher);
-        
-        System.out.println(cypher);
+        System.out.println(result);
     }
 
     @Override
     public void decrypt() {
         algo.decrypt();
         
-        int key = Integer.parseInt(this.algo.getKey());
-        String result = "";
-        for(char c : this.algo.getValue().toCharArray()) {
-            result += (char) ((c - key) % 255);
-        }
-        
+        String result = cesarAlgo(false);
         this.setValue(result);
         
         System.out.println(result);
+    }
+    
+    private String cesarAlgo(boolean encrypt){
+        int key = Integer.parseInt(this.algo.getKey());
+        String result = "";
+        for(char c : this.algo.getValue().toCharArray()) {
+            result += (char) ((c-FIRST + mult(encrypt)*key) % SIZE + FIRST);
+        }
+        return result;
     }
 
 }

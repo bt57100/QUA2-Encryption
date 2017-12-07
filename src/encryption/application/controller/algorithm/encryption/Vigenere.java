@@ -16,15 +16,10 @@ import java.util.List;
  */
 public class Vigenere extends AEncryption {
 
-    private final int first;
-    private final int last;
-    private final int size;
+    
     
     public Vigenere(EncryptionDecorator encrypt) {
         algo = encrypt;
-        first = 32;
-        last = 126;
-        size = last - first;
     }
     
 
@@ -49,26 +44,24 @@ public class Vigenere extends AEncryption {
     @Override
     public void encrypt() {
         algo.encrypt();
-        System.out.println("Vigenere Encrypt");
-        List<Integer> value = stringToIntList(algo.getValue());
-        int valueLength = value.size();
-        List<Integer> key = stringToIntList(algo.getKey());
-        int keyLength = key.size();
+        //System.out.println("Vigenere Encrypt");
         
-        List<Integer> crypt = new ArrayList<>();
         
-        for (int i = 0; i < valueLength; i++){
-            int res = (value.get(i)+ key.get(i%keyLength)-2*first)%size +first;
-            crypt.add(res);
-        }
-        String cypher = intListToString(crypt);
+        String cypher = vigenereAlgo(true);
         this.setValue(cypher);
     }
 
     @Override
     public void decrypt() {
         algo.decrypt();
-        System.out.println("Vigenere Decrypt");
+        //System.out.println("Vigenere Decrypt");
+        
+        String cypher = vigenereAlgo(false);
+        System.out.println(cypher);
+        this.setValue(cypher);
+    }
+    
+    private String vigenereAlgo(boolean encrypt){
         List<Integer> value = stringToIntList(algo.getValue());
         int valueLength = value.size();
         List<Integer> key = stringToIntList(algo.getKey());
@@ -77,12 +70,10 @@ public class Vigenere extends AEncryption {
         List<Integer> crypt = new ArrayList<>();
         
         for (int i = 0; i < valueLength; i++){
-            int res = (value.get(i)- key.get(i%keyLength))%size +first;
-            crypt.add(res);
+            crypt.add(Math.floorMod(value.get(i)-FIRST+ mult(encrypt)*
+                    (key.get(i%keyLength)-FIRST),SIZE) +FIRST);
         }
-        String cypher = intListToString(crypt);
-        System.out.println(cypher);
-        this.setValue(cypher);
+        return intListToString(crypt);
     }
     
     
