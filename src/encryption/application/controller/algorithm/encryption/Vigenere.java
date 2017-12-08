@@ -17,13 +17,9 @@ import java.util.List;
  */
 public class Vigenere extends AEncryption {
 
-    
-    
     public Vigenere(EncryptionDecorator encrypt) {
         algo = encrypt;
     }
-    
-
     
     private List stringToIntList(String string){
         List<Integer> result = new ArrayList<>();
