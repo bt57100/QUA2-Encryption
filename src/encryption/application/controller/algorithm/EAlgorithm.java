@@ -6,7 +6,7 @@
 package encryption.application.controller.algorithm;
 
 /**
- *
+ * Enumerate all algorithms
  * @author bt57100
  */
 public enum EAlgorithm {

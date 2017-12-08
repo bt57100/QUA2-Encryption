@@ -12,11 +12,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
+ * Main class to launch application
  * @author bt57100
  */
 public class EncryptionApplication extends Application {
     
+	/**
+	 * Launch Java FX
+	 */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view/EncryptionView.fxml"));
@@ -28,6 +31,7 @@ public class EncryptionApplication extends Application {
     }
 
     /**
+     * Launch main application
      * @param args the command line arguments
      */
     public static void main(String[] args) {

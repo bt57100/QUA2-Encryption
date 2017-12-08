@@ -39,6 +39,10 @@ public class EncryptionController implements Initializable {
     @FXML
     private TextField nbVigenere;
 
+    /**
+     * Action on button click "Chiffrer"
+     * @param event
+     */
     @FXML
     private void chiffrer(ActionEvent event) {
         System.out.println("Chiffrer");
@@ -48,6 +52,10 @@ public class EncryptionController implements Initializable {
         System.out.println();
     }
 
+    /**
+     * Action on button click "Déchiffrer"
+     * @param event
+     */
     @FXML
     private void dechiffrer(ActionEvent event) {
         System.out.println("Dechiffrer");
@@ -57,21 +65,37 @@ public class EncryptionController implements Initializable {
         System.out.println();
     }
     
+    /**
+     * Clear Cesar key on click 
+     * @param event
+     */
     @FXML
     public void clearCesar(MouseEvent event) {
     	clefCesar.setText("");
     }
     
+    /**
+     * Clear chaine input on click
+     * @param event
+     */
     @FXML
     public void clearChaineInput(MouseEvent event) {
     	chaineInput.setText("");
     }
     
+    /**
+     * Clear Vigenere key on click
+     * @param event
+     */
     @FXML
     public void clearVigenere(MouseEvent event) {
     	clefVigenere.setText("");
     }
     
+    /**
+     * Check prevent other character than numeric
+     * @return the key event
+     */
     private EventHandler<KeyEvent> validateNumeric() {
     	return (KeyEvent event) -> {
             if(!event.getCharacter().matches("[0-9]")) {
@@ -79,7 +103,11 @@ public class EncryptionController implements Initializable {
             }
         };
     }
-    
+
+    /**
+     * Check prevent other character than those consider by the application
+     * @return the key event
+     */
     private EventHandler<KeyEvent> validateCustomAlphaNumeric() {
     	return (KeyEvent event) -> {
             if(!event.getCharacter().matches(EncryptionUtils.getRegExpCustomAlphaNum())) {
@@ -88,6 +116,9 @@ public class EncryptionController implements Initializable {
         };
     }
 
+    /**
+     * Initialize JavaFX components
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nbCesar.addEventFilter(KeyEvent.KEY_TYPED, validateNumeric());
@@ -97,6 +128,11 @@ public class EncryptionController implements Initializable {
         chaineInput.addEventFilter(KeyEvent.KEY_TYPED, validateCustomAlphaNumeric());
     }
     
+    /**
+     * Convert Cesar key if possible 
+     * else return 0 
+     * @return cesar key
+     */
     private int convertCesarKey() {
         int key = 0;        
         if(this.nbCesar.getText() != null && 
@@ -106,10 +142,15 @@ public class EncryptionController implements Initializable {
         return key;
     }
     
+    /**
+     * Prepare the encryption using decorator pattern
+     * @return the encryption algorithm
+     */
     private EncryptionDecorator prepareAlgorithm() {
         EncryptionDecorator ed = new EncryptionDecorator();
         ed.setValue(this.chaineInput.getText());
-                
+         
+        /* Cesar */
         if(convertCesarKey() > 0) {
             ed.setKey(this.clefCesar.getText());
             for(int i=0; i < Integer.parseInt(this.nbCesar.getText()); i++) {
@@ -119,6 +160,7 @@ public class EncryptionController implements Initializable {
             }
         }
         
+        /* Vigenere */
         if(Integer.parseInt(this.nbVigenere.getText() == null ? "0" :this.nbVigenere.getText()) > 0) {
             ed.setKey(this.clefVigenere.getText());
             for(int i=0; i < Integer.parseInt(this.nbVigenere.getText()); i++) {
