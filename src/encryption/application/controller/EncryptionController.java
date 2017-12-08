@@ -53,7 +53,7 @@ public class EncryptionController implements Initializable {
     }
 
     /**
-     * Action on button click "Déchiffrer"
+     * Action on button click "Dechiffrer"
      * @param event
      */
     @FXML
