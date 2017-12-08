@@ -17,31 +17,18 @@ import java.util.List;
  */
 public class Vigenere extends AEncryption {
 
-    
-    
+	/**
+	 * Constructor used by the decorator
+	 * @param encrypt
+	 */
     public Vigenere(EncryptionDecorator encrypt) {
         algo = encrypt;
     }
-    
 
-    
-    private List stringToIntList(String string){
-        List<Integer> result = new ArrayList<>();
-        for(int i = 0; i<string.length(); i++){
-            result.add((int) string.charAt(i));
-        }
-        return result;
-    }
-    
-    private String intListToString(List<Integer> list){
-        String result = new String();
-        for(int c :list){
-            result += (char) c;
-        }
-        
-        return result;
-    }
-
+    /**
+     * Encrypt the value using the key
+     * Decorator function
+     */
     @Override
     public void encrypt() {
         algo.encrypt();
@@ -49,6 +36,10 @@ public class Vigenere extends AEncryption {
         this.setValue(cypher);
     }
 
+    /**
+     * Decrypt the value using the key
+     * Decorator function
+     */
     @Override
     public void decrypt() {
         algo.decrypt();
@@ -56,11 +47,16 @@ public class Vigenere extends AEncryption {
         this.setValue(cypher);
     }
     
+    /**
+     * Algorithm used to encrypt or decrypt
+     * @param encrypt true=encryption / false = decryption
+     * @return the cypher
+     */
     private String vigenereAlgo(boolean encrypt){
-        List<Integer> value = stringToIntList(algo.getValue());
-        int valueLength = value.size();
-        List<Integer> key = stringToIntList(algo.getKey());
+        List<Integer> key = EncryptionUtils.stringToIntList(algo.getKey());
+        List<Integer> value = EncryptionUtils.stringToIntList(algo.getValue());
         int keyLength = key.size();
+        int valueLength = value.size();
         
         List<Integer> crypt = new ArrayList<>();
         
@@ -68,7 +64,8 @@ public class Vigenere extends AEncryption {
             crypt.add(Math.floorMod(value.get(i)-EncryptionUtils.FIRST+ mult(encrypt)*
                     (key.get(i%keyLength)-EncryptionUtils.FIRST),EncryptionUtils.SIZE) +EncryptionUtils.FIRST);
         }
-        return intListToString(crypt);
+        
+        return EncryptionUtils.intListToString(crypt);
     }
     
     

@@ -10,15 +10,23 @@ import encryption.application.controller.algorithm.EncryptionDecorator;
 import encryption.application.utils.EncryptionUtils;
 
 /**
- *
+ * Cesar algorithm
  * @author bt57100
  */
 public class Cesar extends AEncryption {
 
+	/**
+	 * Constructor used by the decorator
+	 * @param encrypt
+	 */
     public Cesar(EncryptionDecorator encrypt) {
         algo = encrypt;
     }
 
+    /**
+     * Encrypt the value using the key
+     * Decorator function
+     */
     @Override
     public void encrypt() {
         algo.encrypt();
@@ -26,6 +34,10 @@ public class Cesar extends AEncryption {
         this.setValue(result);
     }
 
+    /**
+     * Decrypt the value using the key
+     * Decorator function
+     */
     @Override
     public void decrypt() {
         algo.decrypt();
@@ -33,6 +45,11 @@ public class Cesar extends AEncryption {
         this.setValue(result);
     }
     
+    /**
+     * Algorithm used to encrypt or decrypt
+     * @param encrypt true=encryption / false = decryption
+     * @return the cypher
+     */
     private String cesarAlgo(boolean encrypt){
         int key = Integer.parseInt(this.algo.getKey());
         String result = "";
