@@ -6,7 +6,6 @@
 package encryption.application.controller;
 
 import encryption.application.utils.EncryptionUtils;
-import encryption.application.controller.algorithm.AEncryption;
 import encryption.application.controller.algorithm.EncryptionDecorator;
 import encryption.application.controller.algorithm.encryption.Cesar;
 import encryption.application.controller.algorithm.encryption.Vigenere;
@@ -28,8 +27,6 @@ import javafx.scene.input.MouseEvent;
  */
 public class EncryptionController implements Initializable {
 
-    @FXML
-    private Label label;
     @FXML
     private TextField chaineInput;
     @FXML

@@ -30,7 +30,7 @@ public class Vigenere extends AEncryption {
     }
     
     private String intListToString(List<Integer> list){
-        String result = new String();
+        String result = "";
         for(int c :list){
             result += (char) c;
         }
