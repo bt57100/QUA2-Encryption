@@ -10,11 +10,17 @@ Two algorithms can be used: Cesar and an extended Vigenère, using characters fr
 ## Installation instruction
 
 Just clone it from github, and compile it.  
-An installation from Docker should come in shortly
+Or install with Docker 
 
 ## Tests
 A set of test have been incorporated in order to ensure the algorithms are working according to what is expected.
 
+## Use
+1. Enter the data to encrypt or decrypt
+2. Enter the key for Vigenere and/or Cesar
+3. Enter the number of time to loop on each algorithm
+4. Click on the button to encrypt or decrypt
+5. The cypher is displayed under the button
 
 ## Contributors
 
