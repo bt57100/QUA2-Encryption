@@ -10,7 +10,19 @@ Two algorithms can be used: Cesar and an extended Vigenère, using characters fr
 ## Installation instruction
 
 Just clone it from github, and compile it.  
+
 Or install with Docker 
+
+Before beginning:  
+Download Xming to create a displayer and to host the container output on PC host  
+Link : http://www.straightrunning.com/XmingNotes/  
+Launch Xming server using the following Xming command in CMD or use the graphical interface Xlaunch :  
+> xming :0 -ac -clipboard -multiwindow
+
+In docker:  
+Open the source file (Ex: cd ~/Desktop/QUA2-Encryption)
+> docker build -t fx .
+> docker run --rm -e DISPLAY=<192.168.99.1:0> fx			// Replace with docker IP
 
 ## Tests
 A set of test have been incorporated in order to ensure the algorithms are working according to what is expected.
