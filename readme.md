@@ -1,6 +1,7 @@
 # QUA2 Encryption
 
 ![Build](https://travis-ci.org/bt57100/QUA2-Encryption.svg?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f018e86e3bad4fbc9fc1dcc3359b6b7f)](https://www.codacy.com/app/bt57100/QUA2-Encryption?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bt57100/QUA2-Encryption&amp;utm_campaign=Badge_Grade)
 
 Simple project for ECE QUA2 class:  
 This application is used to encrypt and decrypt data.  
@@ -38,7 +39,14 @@ A set of test have been incorporated in order to ensure the algorithms are worki
 
 For this project, we wanted to implement multiple algorithm at the same time with the possibility to chain them as much as we wanted. Thus we decided to implement a design pattern decorator.  
 In addition, we decided to use JavaFX as graphical interface. For this, we chose to add the design pattern MVC to the project.  
-![alt Class_diagram](relative/Class_diagram.PNG "Class Diagram")
+![alt Class_diagram](Class_diagram.PNG "Class Diagram")
+
+## Quality
+
+In concern of quality issue, we used: 
+* java code: JDeodorant, Codacy
+* integration: ant, travis-ci
+* deployment: docker 
 
 ## Contributors
 
