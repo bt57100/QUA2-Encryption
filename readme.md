@@ -13,7 +13,7 @@ Just clone it from github, and compile it.
 
 Or install with Docker 
 
-Before beginning:  
+Before beginning to defines a graphical interface:  
 Download Xming to create a displayer and to host the container output on PC host  
 Link : http://www.straightrunning.com/XmingNotes/  
 Launch Xming server using the following Xming command in CMD or use the graphical interface Xlaunch :  
@@ -33,6 +33,12 @@ A set of test have been incorporated in order to ensure the algorithms are worki
 3. Enter the number of time to loop on each algorithm
 4. Click on the button to encrypt or decrypt
 5. The cypher is displayed under the button
+
+## Implementation
+
+For this project, we wanted to implement multiple algorithm at the same time with the possibility to chain them as much as we wanted. Thus we decided to implement a design pattern decorator.  
+In addition, we decided to use JavaFX as graphical interface. For this, we chose to add the design pattern MVC to the project.  
+![alt Class_diagram](relative/Class_diagram.PNG "Class Diagram")
 
 ## Contributors
 
